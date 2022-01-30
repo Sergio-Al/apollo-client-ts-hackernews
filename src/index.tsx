@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 import {
   ApolloProvider,
@@ -22,7 +23,7 @@ const httpLink = createHttpLink({
 const authLInk = setContext((_, { headers }) => {
   // fake token with expiricy time
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJpYXQiOjE2NDM0ODk1NTUsImV4cCI6MTY0MzQ5Njc1NX0.MPNWve5jWD-r0p65hlbjDasuyEDJ_jeweOy_HxMPDCI";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJpYXQiOjE2NDM1NTE5NTgsImV4cCI6MTY0MzU1OTE1OH0.3ox9kZKcB81Z6T6TKk3NZPi3KowvR5Uq66S2_q5no0Y";
   return {
     headers: { ...headers, authorization: token ? `Bearer ${token}` : "" },
   };
@@ -35,11 +36,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
