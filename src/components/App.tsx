@@ -9,6 +9,7 @@ import Header from "./Header";
 import CreateLink from "./CreateLink";
 // page of link list
 import LinkList from "./LinkList";
+import Login from "./Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LinkList />} />
           <Route path="/create" element={<CreateLink />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>

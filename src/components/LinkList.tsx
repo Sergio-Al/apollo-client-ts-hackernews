@@ -4,8 +4,9 @@ import Link, { LinkDatatype } from "./Link";
 import { useQuery, gql } from "@apollo/client";
 
 const FEED_QUERY = gql`
-  query Feed {
-    feed(take: 10) {
+  query Query($take: Int, $orderBy: [LinkOrderByInput!]) {
+    feed(take: $take, orderBy: $orderBy) {
+      count
       links {
         id
         description
@@ -16,7 +17,16 @@ const FEED_QUERY = gql`
 `;
 
 const LinkList = () => {
-  const { data } = useQuery(FEED_QUERY);
+  const { data } = useQuery(FEED_QUERY, {
+    variables: {
+      take: 10,
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+      ],
+    },
+  });
 
   return (
     <div>

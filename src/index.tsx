@@ -14,6 +14,7 @@ import {
 
 // creating a context
 import { setContext } from "@apollo/client/link/context";
+import { AUTH_TOKEN } from "./components/constants";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:4000",
@@ -22,8 +23,7 @@ const httpLink = createHttpLink({
 // Creating a fake session with a valid token obtained in the backend (apollo playground)
 const authLInk = setContext((_, { headers }) => {
   // fake token with expiricy time
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJpYXQiOjE2NDM1NTE5NTgsImV4cCI6MTY0MzU1OTE1OH0.3ox9kZKcB81Z6T6TKk3NZPi3KowvR5Uq66S2_q5no0Y";
+  const token = localStorage.getItem(AUTH_TOKEN);
   return {
     headers: { ...headers, authorization: token ? `Bearer ${token}` : "" },
   };
