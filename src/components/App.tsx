@@ -10,6 +10,7 @@ import CreateLink from "./CreateLink";
 // page of link list
 import LinkList from "./LinkList";
 import Login from "./Login";
+import Search from "./Search";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LinkList />} />
           <Route path="/create" element={<CreateLink />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </div>
     </div>
